@@ -2036,6 +2036,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6502182839467228382}
     m_Modifications:
     - target: {fileID: 950648382436692354, guid: 9dfed6a75f086d143a3ba57d883b6e38, type: 3}
+      propertyPath: gunShot
+      value: 
+      objectReference: {fileID: 8300000, guid: 43fcd772392ca244085d19735630850e, type: 3}
+    - target: {fileID: 950648382436692354, guid: 9dfed6a75f086d143a3ba57d883b6e38, type: 3}
       propertyPath: targetIK
       value: 
       objectReference: {fileID: 1723172355}
@@ -13850,7 +13854,7 @@ MonoBehaviour:
   bulletsPerShot: 1
   damage: 15
   kickForce: 200
-  gunShot: {fileID: 8300000, guid: e5b1828cd05231143903b104732184e8, type: 3}
+  gunShot: {fileID: 8300000, guid: a7e08fe4e2e60064c84e1668901c9032, type: 3}
   lightIntensity: 1
   lightDimSpeed: 5
   hintIK: {fileID: 9051868779185768450}

@@ -50,6 +50,7 @@ public class WeaponManager : MonoBehaviour
         ammoToken = GetComponent<AmmoSystem>();
         bloomToken = GetComponent<WeaponBloom>();
         recoilToken = GetComponent<WeaponRecoil>();
+        muzzleLightToken.intensity = 0;
         if (GetComponentInParent<WeaponSystem>())
         {
             weaponSystemToken = GetComponentInParent<WeaponSystem>();

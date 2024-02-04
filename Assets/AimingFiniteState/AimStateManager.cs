@@ -54,7 +54,7 @@ public class AimStateManager : MonoBehaviour
     {
         xAxis += Input.GetAxisRaw("Mouse X") * mouseSense;
         yAxis -= Input.GetAxisRaw("Mouse Y") * mouseSense;
-        yAxis = Mathf.Clamp(yAxis, -40, 80);
+        yAxis = Mathf.Clamp(yAxis, -30, 60);
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isEquip)
