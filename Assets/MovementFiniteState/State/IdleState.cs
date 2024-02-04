@@ -15,6 +15,7 @@ public class IdleState : MovementBaseState
             if (Input.GetKey(KeyCode.LeftShift)) token.SwitchState(token.runToken);
             else token.SwitchState(token.walkToken); 
         }
+        if (Input.GetKeyDown(KeyCode.Space) && token.isGround) token.SwitchState(token.jumpToken);
         if (Input.GetKeyDown(KeyCode.C)) token.SwitchState(token.crouchToken);
     }
 }

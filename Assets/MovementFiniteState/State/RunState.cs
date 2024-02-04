@@ -13,6 +13,7 @@ public class RunState : MovementBaseState
     {
         if (token.dir.magnitude < 0.1f) ExitState(token, token.idleToken);
         else if (!Input.GetKey(KeyCode.LeftShift)) ExitState(token, token.walkToken);
+        if (Input.GetKeyDown(KeyCode.Space) && token.isGround) token.SwitchState(token.jumpToken);
     }
     void ExitState(MovementStateManager token, MovementBaseState state)
     {

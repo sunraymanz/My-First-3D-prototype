@@ -68,6 +68,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (fireRateTimer < 2f) fireRateTimer += Time.deltaTime;
         if (actionToken.currentState == actionToken.reloadToken) return false;
+        if (actionToken.currentState == actionToken.swapToken) return false;
         if (fireRateTimer < fireRate) return false;
         if (ammoToken.currentAmmo == 0) return false;
         if (actionToken.animToken.GetLayerWeight(1) > 0.1f && actionToken.animToken.GetBool("Aiming"))

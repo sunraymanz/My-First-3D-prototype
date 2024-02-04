@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class ActionStateManager : MonoBehaviour
 {
-    public ActionBaseState currentState;
+    [SerializeField] public ActionBaseState currentState;
     public ActionIdleState idleToken = new ActionIdleState();
     public ReloadState reloadToken = new ReloadState();
+    public SwapState swapToken = new SwapState();
 
     public WeaponManager currentWeapon;
     public Animator animToken;
     public AmmoSystem ammoToken;
+
+    public TwoBoneIKConstraint handIK;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,7 @@ public class ActionStateManager : MonoBehaviour
     {
         currentState = state;
         currentState.EnterState(this);
+        //Debug.Log("Action State Now is :" +currentState);
     }
 
     public void FinishReload() 

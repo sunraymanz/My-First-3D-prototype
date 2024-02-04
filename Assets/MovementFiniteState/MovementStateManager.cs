@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MovementStateManager : MonoBehaviour
 {
-    public float moveSpeed = 5;
-    public float runSpeed = 8;
-    public float walkspeed = 5;
-    public float crouchSpeed = 3;
+    public float moveSpeed = 5f;
+    public float runSpeed = 8f;
+    public float walkspeed = 5f;
+    public float crouchSpeed = 3f;
+    public float airSpeed = 1.5f;
+    Vector3 airDir;
     [HideInInspector] public Vector3 dir;
     float Xinput, Yinput;
     CharacterController controllerToken;
@@ -43,8 +45,7 @@ public class MovementStateManager : MonoBehaviour
         GetDirectional();
         Move();
         IsGrounded();
-        Gravity();
-        if (Input.GetKeyDown(KeyCode.Space) && isGround) SwitchState(jumpToken);
+        Gravity();        
         currentState.UpdateState(this);
     }
     public void SwitchState(MovementBaseState state) 
@@ -58,15 +59,13 @@ public class MovementStateManager : MonoBehaviour
         Yinput = Input.GetAxis("Vertical");
         animToken.SetFloat("Xinput", Xinput);
         animToken.SetFloat("Yinput", Yinput);
-        dir = transform.forward * Yinput + transform.right * Xinput;
-        if (dir.magnitude > 0)
-        {
-
-        }
+        airDir = Vector3.zero;
+        if (!isGround) airDir = transform.forward * Yinput + transform.right * Xinput;
+        else dir = transform.forward * Yinput + transform.right * Xinput;
     }
     void Move()
     {
-        controllerToken.Move(Vector3.ClampMagnitude(dir, 1.0f) * moveSpeed * Time.deltaTime);
+        controllerToken.Move(((Vector3.ClampMagnitude(dir, 1.0f) * moveSpeed)+(Vector3.ClampMagnitude(airDir, 1.0f) * airSpeed)) * Time.deltaTime);
     }
 
     void IsGrounded() 

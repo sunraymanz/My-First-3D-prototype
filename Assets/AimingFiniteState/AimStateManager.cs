@@ -54,12 +54,12 @@ public class AimStateManager : MonoBehaviour
     {
         xAxis += Input.GetAxisRaw("Mouse X") * mouseSense;
         yAxis -= Input.GetAxisRaw("Mouse Y") * mouseSense;
-        yAxis = Mathf.Clamp(yAxis, -80, 80);
+        yAxis = Mathf.Clamp(yAxis, -40, 80);
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isEquip)
-            { equipWieght = 0; targetFOV = normalFOV;  }
-            else { equipWieght = 1; targetFOV = drawFOV; }
+            { equipWieght = 0; targetFOV = normalFOV; GetComponent<WeaponSystem>().WeaponUneqiup(); }
+            else { equipWieght = 1; targetFOV = drawFOV; GetComponent<WeaponSystem>().WeaponEqiup(); }
             isEquip = !isEquip;
         }
         currentState.UpdateState(this);
@@ -90,14 +90,13 @@ public class AimStateManager : MonoBehaviour
     public void SetAimRig() 
     {
         bodyRotate.weight = Mathf.Lerp( bodyRotate.weight, bodyWieght, 10*Time.deltaTime);
-        handIK.weight = Mathf.Lerp(handIK.weight, handWieght, 20 * Time.deltaTime);
         animToken.SetLayerWeight(1,Mathf.Lerp(animToken.GetLayerWeight(1), equipWieght, 10 * Time.deltaTime)) ;
     }
 
     void CameraAdapt() 
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt)) xAdaptPos = -xAdaptPos ;
-        if (animToken.GetBool("Crouching")) yAdaptPos = 0.4f; else yAdaptPos = 0.8f;
+        if (animToken.GetBool("Crouching")) yAdaptPos = 0.5f; else yAdaptPos = 0.8f;
         targetPos.localPosition = new Vector3(Mathf.Lerp(targetPos.localPosition.x,xAdaptPos,camAdaptSpeed*Time.deltaTime), Mathf.Lerp(targetPos.localPosition.y, yAdaptPos, camAdaptSpeed * Time.deltaTime), 0.5f);
     }
 }

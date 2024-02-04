@@ -14,6 +14,7 @@ public class WalkState : MovementBaseState
         if (token.dir.magnitude < 0.1f) ExitState(token,token.idleToken);
         else if (Input.GetKeyDown(KeyCode.C)) ExitState(token, token.crouchToken);
         else if (Input.GetKey(KeyCode.LeftShift)) ExitState(token, token.runToken);
+        if (Input.GetKeyDown(KeyCode.Space) && token.isGround) token.SwitchState(token.jumpToken);
     }
 
     void ExitState(MovementStateManager token , MovementBaseState state) 
