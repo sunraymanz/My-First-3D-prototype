@@ -40,8 +40,7 @@ public class WeaponManager : MonoBehaviour
     {
         aimToken = GetComponentInParent<AimStateManager>();       
         actionToken = GetComponentInParent<ActionStateManager>();       
-        vfxToken = GetComponentInChildren<ParticleSystem>();
-        muzzleLightToken = GetComponentInChildren<Light>();
+        vfxToken = GetComponentInChildren<ParticleSystem>();      
     }
 
     private void OnEnable()
@@ -50,6 +49,7 @@ public class WeaponManager : MonoBehaviour
         ammoToken = GetComponent<AmmoSystem>();
         bloomToken = GetComponent<WeaponBloom>();
         recoilToken = GetComponent<WeaponRecoil>();
+        muzzleLightToken = GetComponentInChildren<Light>();
         muzzleLightToken.intensity = 0;
         if (GetComponentInParent<WeaponSystem>())
         {
